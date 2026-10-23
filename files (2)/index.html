@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monitoreo agrícola - Mango y Limón (Prototipo)</title>
+
+<link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+<!-- ================= PANTALLA DE LOGIN / REGISTRO ================= -->
+<div id="pantallaAuth">
+  <h1 class="titulo-auth">Monitoreo agrícola<br>Mango y Limón - Girardot</h1>
+
+  <!-- Formulario de inicio de sesión -->
+  <div class="caja-auth" id="formLogin">
+    <h2>Iniciar sesión</h2>
+    <label for="loginCorreo">Correo</label>
+    <input id="loginCorreo" type="text">
+    <label for="loginClave">Contraseña</label>
+    <input id="loginClave" type="password">
+    <button class="boton" id="btnLogin">Entrar</button>
+    <p class="mensaje" id="msgLogin"></p>
+    <button class="enlace" id="irRegistro">¿No tiene cuenta? Regístrese</button>
+  </div>
+
+  <!-- Formulario de registro -->
+  <div class="caja-auth" id="formRegistro" style="display:none">
+    <h2>Crear cuenta</h2>
+    <label for="regNombre">Nombre completo</label>
+    <input id="regNombre" type="text">
+    <label for="regCorreo">Correo</label>
+    <input id="regCorreo" type="text">
+    <label for="regClave">Contraseña (mínimo 6 caracteres)</label>
+    <input id="regClave" type="password">
+    <label for="regClave2">Repita la contraseña</label>
+    <input id="regClave2" type="password">
+    <button class="boton" id="btnRegistroUsuario">Registrarme</button>
+    <p class="mensaje" id="msgRegistro"></p>
+    <button class="enlace" id="irLogin">¿Ya tiene cuenta? Inicie sesión</button>
+  </div>
+</div>
+
+<!-- ================= APLICACIÓN (solo visible después de iniciar sesión) ================= -->
+<div id="app" style="display:none">
+
+<header class="cabecera-flex">
+  <div>
+    <h1>Sistema de monitoreo agrícola - Girardot</h1>
+    <p id="nombreAgricultor"></p>
+  </div>
+  <button id="btnSalir">Cerrar sesión</button>
+</header>
+
+<main>
+  <nav id="menu">
+    <button data-tab="tabCultivos" class="activa">Cultivos</button>
+    <button data-tab="tabHumedad">Humedad</button>
+    <button data-tab="tabClima">Clima y plagas</button>
+    <button data-tab="tabAlertas">Alertas</button>
+    <button data-tab="tabObservaciones">Observaciones</button>
+  </nav>
+
+  <!-- ===== PESTAÑA 1: CULTIVOS ===== -->
+  <section id="tabCultivos" class="visible">
+    <h2>Registrar cultivo</h2>
+    <label for="tipo">Tipo de cultivo</label>
+    <select id="tipo">
+      <option value="mango">Mango</option>
+      <option value="limon">Limón</option>
+    </select>
+    <label for="ubicacion">Ubicación (finca o vereda)</label>
+    <input id="ubicacion" type="text">
+    <label for="area">Área (hectáreas)</label>
+    <input id="area" type="text">
+    <button class="boton" id="btnRegistrar">Registrar cultivo</button>
+
+    <h2 style="margin-top:24px">Cultivos registrados</h2>
+    <ul id="listaCultivos"></ul>
+  </section>
+
+  <!-- ===== PESTAÑA 2: HUMEDAD ===== -->
+  <section id="tabHumedad">
+    <h2>Humedad del suelo</h2>
+    <label for="selHumedad">Cultivo</label>
+    <select id="selHumedad"></select><br>
+    <button class="boton" id="btnLeer">Leer sensor</button>
+    <div class="valor" id="valorHumedad">-- %</div>
+    <span class="estado" id="estadoHumedad">Sin lectura</span>
+    <h3>Recomendaciones</h3>
+    <ul id="listaHumedad"></ul>
+  </section>
+
+  <!-- ===== PESTAÑA 3: CLIMA Y PLAGAS ===== -->
+  <section id="tabClima">
+    <h2>Pronóstico y riesgo de plagas</h2>
+    <label for="selClima">Cultivo</label>
+    <select id="selClima"></select><br>
+    <button class="boton" id="btnClima">Consultar pronóstico</button>
+    <p id="datosClima">Sin datos todavía.</p>
+    <h3>Riesgos detectados</h3>
+    <ul id="listaRiesgos"></ul>
+  </section>
+
+  <!-- ===== PESTAÑA 4: ALERTAS ===== -->
+  <section id="tabAlertas">
+    <h2>Historial de alertas</h2>
+    <div class="contenedor-tabla">
+      <table>
+        <thead><tr><th>#</th><th>Fecha</th><th>Tipo</th><th>Mensaje</th></tr></thead>
+        <tbody id="cuerpoAlertas"></tbody>
+      </table>
+    </div>
+    <p id="sinAlertas">No hay alertas registradas.</p>
+  </section>
+
+  <!-- ===== PESTAÑA 5: OBSERVACIONES ===== -->
+  <section id="tabObservaciones">
+    <h2>Observaciones y reporte</h2>
+    <label for="selReporte">Cultivo</label>
+    <select id="selReporte"></select>
+    <label for="observacion">Escriba su observación</label>
+    <input id="observacion" type="text">
+    <button class="boton" id="btnGuardarObs">Guardar observación</button>
+    <button class="boton" id="btnReporte">Ver reporte</button>
+    <pre id="textoReporte">El reporte aparecerá aquí.</pre>
+  </section>
+</main>
+
+</div> <!-- fin de #app -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
